@@ -28,7 +28,7 @@
                 <div class="collapse" id="search-nav">
                     <form action="/admin/do_search" method="GET" class="navbar-left navbar-form nav-search mr-md-3">
                         <div class="input-group">
-                            <input type="text" placeholder="Search ..." class="form-control" name="search" required/>
+                            <input type="text" placeholder="Search ..." class="form-control" name="search" required />
                         </div>
                     </form>
                 </div>
@@ -272,7 +272,11 @@
                                                     </form>
                                                 </td>
                                                 {{else}}
-                                                <td class="alert alert-info">No Result</td>
+                                            <tr>
+                                                <td colspan="12">
+                                                    <div class="alert alert-info">There are no content available</div>
+                                                </td>
+                                            </tr>
                                             </tr>
                                             {{/each}}
                                         </tbody>

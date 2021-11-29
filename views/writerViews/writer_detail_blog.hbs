@@ -69,14 +69,14 @@
     <div class="row">
       <div class="col-lg-8">
         <div class="main_blog_details">
-          <img class="img-fluid" src="/uploads/{{article.articleImage}}" alt="Article Image">
+          <img class="img-fluid" src="/uploads/{{article.articleImage}}" alt="Article Image" style="width: 730px; height: 400px; object-fit: cover;">
           <a>
             <h4> {{article.name}} </h4>
           </a>
           <div class="user_details">
             <div class="float-left">
               {{#each article.tag_id}}
-              <a href="#">{{name}}</a>
+              <a href="/writers/list_articleByTag/{{_id}}">#{{name}}</a>
               {{/each}}
             </div>
             <div class="float-right mt-sm-0 mt-3">
@@ -163,7 +163,7 @@
             <div class="form-group mt-30">
               <div class="col-autos">
                 <form action="/writers/do_search" method="GET">
-                  <input id="se" type="text" name="search" placeholder="Search ..." />
+                  <input id="se" type="text" name="search" placeholder="Search ..." style=" width:280px; height:40px;" required/>
                 </form>
               </div>
             </div>
@@ -209,7 +209,7 @@
             <ul class="list">
               {{#each tags}}
               <li>
-                <a href="/writers/list_articleByTag/{{_id}}">{{name}}</a>
+                <a href="/writers/list_articleByTag/{{_id}}">#{{name}}</a>
               </li>
               {{/each}}
             </ul>
@@ -225,23 +225,11 @@
 <!--================ Start Footer Area =================-->
 <footer class="footer-area section-padding">
   <div class="container">
-    <div class="row">
-      <div class="col-lg col-md col-sm">
-        <div class="single-footer-widget">
-          <h6>About Us</h6>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
-            magna aliqua.
-          </p>
-        </div>
-      </div>
-    </div>
     <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
       <p class="footer-text m-0">
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-        Copyright &copy;
-        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
-          class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+        MOH &copy;
+        <script>document.write(new Date().getFullYear());</script>
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
       </p>
     </div>
