@@ -15,14 +15,13 @@ const getWriterHome = async (req, res, next) => {
         const popularArticles = await Articles.find({ status: "publish" }).sort({ timeCreated: -1 }).limit(5).populate("author");
         const tags = await Tag.find({});
         const categories = await Category.find({});
-        const articles = await Articles.find({ status: "publish" }).populate("tag_id").populate("author").skip(perPage * page - perPage)
-            .limit(perPage);
+        const articles = await Articles.find({ status: "publish" }).populate("tag_id").populate("author").skip(perPage * page - perPage).limit(perPage);
         const writerAccount = await AppUser.findOne({});
         const writerInfo = await Writer.findOne({ account_id: req.session.userId }).populate("account_id");
         res.render("writerViews/writer_home", {
             popularArticles: popularArticles,
             tags: tags,
-            categories: categories,
+            categories: categories, 
             articles: articles,
             writerAccount: writerAccount,
             writerInfo: writerInfo,
