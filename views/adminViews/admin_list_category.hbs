@@ -1,0 +1,254 @@
+<div class="wrapper">
+  <div class="main-header">
+    <!-- Logo Header -->
+    <div class="logo-header" data-background-color="blue">
+
+      <a href="/admin/home" class="logo">
+        <img src="/admin/assets/img/logo.svg" alt="navbar brand" class="navbar-brand">
+      </a>
+      <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+          <i class="icon-menu"></i>
+        </span>
+      </button>
+      <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+      <div class="nav-toggle">
+        <button class="btn btn-toggle toggle-sidebar">
+          <i class="icon-menu"></i>
+        </button>
+      </div>
+    </div>
+    <!-- End Logo Header -->
+
+    <!-- Navbar Header -->
+    <nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
+
+      <div class="container-fluid">
+        <div class="collapse" id="search-nav">
+          <form action="/admin/search_category" method="GET" class="navbar-left navbar-form nav-search mr-md-3">
+            <div class="input-group">
+              <input type="text" placeholder="Search ..." class="form-control" name="search" required/>
+            </div>
+          </form>
+        </div>
+        <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+          <li class="nav-item dropdown hidden-caret">
+            <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
+              <div class="avatar-sm">
+                <img src="/admin/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+              </div>
+            </a>
+            <ul class="dropdown-menu dropdown-user animated fadeIn">
+              <div class="dropdown-user-scroll scrollbar-outer">
+                <a class="dropdown-item" href="/auth/logout">Logout</a>
+              </div>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar sidebar-style-2">
+    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+      <div class="sidebar-content">
+        <div class="user">
+          <div class="avatar-sm float-left mr-2">
+            <img src="/admin/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+          </div>
+          <div class="info">
+            <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+              <span>
+                Administrator
+                <span class="caret"></span>
+              </span>
+            </a>
+            <div class="clearfix"></div>
+
+            <div class="collapse in" id="collapseExample">
+              <ul class="nav">
+                <li>
+                  <a href="/auth/logout">
+                    <span class="link-collapse">Logout</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <ul class="nav nav-primary">
+          <li class="nav-item">
+            <a data-toggle="collapse" href="#forms">
+              <i class="fas fa-pen-square"></i>
+              <p>Create</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="forms">
+              <ul class="nav nav-collapse">
+                <li>
+                  <a href="/admin/get_addCategory">
+                    <span class="sub-item">New Category</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/admin/get_addTag">
+                    <span class="sub-item">New Tag</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav nav-primary">
+          <li class="nav-item">
+            <a data-toggle="collapse" href="#tables">
+              <i class="fas fa-table"></i>
+              <p>List</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="tables">
+              <ul class="nav nav-collapse">
+                <li>
+                  <a href="/admin/list_all_category">
+                    <span class="sub-item">Categories</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/admin/list_all_tag">
+                    <span class="sub-item">Tags</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/admin/list_all_articles">
+                    <span class="sub-item">Articles</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/admin/list_all_writer">
+                    <span class="sub-item">User</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Sidebar -->
+
+  <div class="main-panel">
+    <div class="content">
+      <div class="page-inner">
+        <div class="page-header">
+          <h4 class="page-title">List Of Categories</h4>
+          <ul class="breadcrumbs">
+            <li class="nav-home">
+              <a href="/admin/home">
+                <i class="flaticon-home"></i>
+              </a>
+            </li>
+            <li class="separator">
+              <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+              <a href="#">List</a>
+            </li>
+            <li class="separator">
+              <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+              <a href="#">List Of Categories</a>
+            </li>
+          </ul>
+        </div>
+        {{#if err}}
+        <div id="alert-suc" role="alert" class="alert alert-success alert-dismissible">
+          {{err}}
+          <button type="button" class="close" data-dismiss="alert">X</button>
+        </div>
+        {{/if}}
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        Category
+                      </th>
+                      <th>
+                        Description
+                      </th>
+                      <th>
+                        Update
+                      </th>
+                      <th>
+                        Delete
+                      </th>
+                    </thead>
+                    <tbody>
+                      {{#each category}}
+                      <tr>
+                        <td>
+                          {{name}}
+                        </td>
+                        <td>
+                          {{desc}}
+                        </td>
+                        <td>
+                          <a href="/admin/update_category/{{_id}}">
+                            <button> <i class="fas fa-pen"></i></button>
+                          </a>
+                        </td>
+                        <td>
+                          <form action="/admin/delete_category" method="POST"
+                            enctype="application/x-www-form-urlencoded">
+                            <input type="hidden" name="_id" value="{{_id}}">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit"><i class="fas fa-trash"></i></button>
+                          </form>
+                        </td>
+                         {{else}}
+                      <td class="alert alert-info">No Result</td>
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                {{#paginate pagination type="first"}}
+                <li {{#if disabled}}class="disabled page-item" {{/if}}><a href="/admin/list_all_category?page={{n}}"
+                    class="page-link">First</a></li>
+                {{/paginate}}
+                {{#paginate pagination type="previous"}}
+                <li {{#if disabled}}class="disabled page-item" {{/if}}><a href="/admin/list_all_category?page={{n}}"
+                    class="page-link">Prev</a></li>
+                {{/paginate}}
+                {{#paginate pagination type="middle" limit="7"}}
+                <li {{#if active}}class="active page-item" {{/if}}><a href="/admin/list_all_category?page={{n}}"
+                    class="page-link">{{n}}</a></li>
+                {{/paginate}}
+                {{#paginate pagination type="next"}}
+                <li {{#if disabled}}class="disabled page-item" {{/if}}><a href="/admin/list_all_category?page={{n}}"
+                    class="page-link">Next</a></li>
+                {{/paginate}}
+                {{#paginate pagination type="last"}}
+                <li {{#if disabled}}class="disabled page-item" {{/if}}><a href="/admin/list_all_category?page={{n}}"
+                    class="page-link">Last</a></li>
+                {{/paginate}}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,201 @@
+<!--================Header Menu Area =================-->
+<header class="header_area">
+  <div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container box_1620">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <a class="navbar-brand logo_h" href="/"><img src="/user/img/logo.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+          <ul class="nav navbar-nav menu_nav justify-content-center">
+            <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item submenu dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                aria-expanded="false">Category</a>
+              <ul class="dropdown-menu">
+                {{#each categories}}
+                <li class="nav-item"><a class="nav-link" href="/list_articleByCategory/{{_id}}">{{name}}</a></li>
+                {{/each}}
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="/auth/login"> Login/Register </a></li>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<!--================Header Menu Area =================-->
+
+<main class="site-main">
+  <!--================Hero Banner start =================-->
+  <section class="mb-30px">
+    <div class="container">
+      <div class="hero-banner">
+        <div class="hero-banner__content">
+          <h3>Tours & Travels</h3>
+          <h1>Amazing Places on earth</h1>
+          <h4>December 12, 2018</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================Hero Banner end =================-->
+  <!--================ Start Blog Post Area =================-->
+  <section class="blog-post-area section-margin mt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          {{#each articleInCategory}}
+          <div class="single-recent-blog-post">
+            <div class="thumb">
+              <img class="img-fluid" src="/uploads/{{articleImage}}" alt="Article Image">
+              <ul class="thumb-info" style=" height: 33px; width: 360px; margin-bottom: 0px;">
+                <li><i class="fa fa-user" aria-hidden="true"> {{author.name}}</i></li>
+                <li><i class="fa fa-eye" aria-hidden="true"> {{views}} views</i></li>
+                <li><i class="fa fa-calendar" aria-hidden="true"> {{moment timeCreated format ="MMMM DD - YYYY"}}</i>
+                </li>
+              </ul>
+            </div>
+            <div class="details mt-20">
+              <h2>{{name}}</h2>
+              <p class="tag-list-inline">Tag:{{#each tag_id}} <a href="/list_articleByTag/{{_id}}"> #{{name}}
+                </a> {{/each}} </p>
+              <p>{{desc}}</p>
+              <a class="button" href="/blog_detail/{{_id}}">Read More <i class="ti-arrow-right"></i></a>
+            </div>
+          </div>
+          {{else}}
+          <div class="alert alert-info">There are no content available</div>
+          {{/each}}
+          <div class="row">
+            <div class="col-lg-12">
+              <nav class="blog-pagination justify-content-center d-flex">
+                <ul class="pagination">
+                  {{#paginate pagination type="first"}}
+                  <li {{#if disabled}}class="disabled" {{/if}}><a
+                      href="/list_articleByCategory/{{../category._id}}?page={{n}}">First</a></li>
+                  {{/paginate}}
+                  {{#paginate pagination type="previous"}}
+                  <li {{#if disabled}}class="disabled" {{/if}}><a
+                      href="/list_articleByCategory/{{../category._id}}?page={{n}}">Prev</a></li>
+                  {{/paginate}}
+                  {{#paginate pagination type="middle" limit="6"}}
+                  <li {{#if active}}class="active" {{/if}}><a
+                      href="/list_articleByCategory/{{../category._id}}?page={{n}}">{{n}}</a></li>
+                  {{/paginate}}
+                  {{#paginate pagination type="next"}}
+                  <li {{#if disabled}}class="disabled" {{/if}}><a
+                      href="/list_articleByCategory/{{../category._id}}?page={{n}}">Next</a></li>
+                  {{/paginate}}
+                  {{#paginate pagination type="last"}}
+                  <li {{#if disabled}}class="disabled" {{/if}}><a
+                      href="/list_articleByCategory/{{../category._id}}?page={{n}}">Last</a></li>
+                  {{/paginate}}
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+        <!-- Start Blog Post Siddebar -->
+        <div class="col-lg-4 sidebar-widgets">
+          <div class="widget-wrap">
+            <div class="single-sidebar-widget search-widget">
+              <h4 class="single-sidebar-widget__title">Search</h4>
+              <div class="form-group mt-30">
+                <div class="col-autos">
+                  <form action="/do_search" method="GET">
+                    <input id="se" type="text" name="search" placeholder="Search..." required />
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="single-sidebar-widget post-category-widget">
+              <h4 class="single-sidebar-widget__title">Category</h4>
+              <ul class="cat-list mt-20">
+                {{#each categories}}
+                <li>
+                  <a href="/list_articleByCategory/{{_id}}" class="d-flex justify-content-between">
+                    <p>{{name}}</p>
+                  </a>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+
+            <div class="single-sidebar-widget popular-post-widget">
+              <h4 class="single-sidebar-widget__title">Recent Post</h4>
+              <div class="popular-post-list">
+                {{#each popularArticles}}
+                <div class="single-post-list">
+                  <div class="thumb">
+                    <img class="card-img rounded-0" src="/uploads/{{articleImage}}" alt="" style="height: 133.39px;">
+                    <ul class="thumb-info" style="margin-bottom: 0px;">
+                      <li>{{author.name}}</li>
+                      <li>{{moment timeCreated format ="MMM DD"}}</li>
+                    </ul>
+                  </div>
+                  <div class="details mt-20">
+                    <a href="/blog_detail/{{_id}}">
+                      <h6>{{name}}</h6>
+                    </a>
+                  </div>
+                </div>
+                {{else}}
+                <div class="alert alert-info">There are no content available</div>
+                {{/each}}
+              </div>
+            </div>
+
+            <div class="single-sidebar-widget tag_cloud_widget">
+              <h4 class="single-sidebar-widget__title">Tag</h4>
+              <ul class="list">
+                {{#each tags}}
+                <li>
+                  <a href="/list_articleByTag/{{_id}}">#{{name}}</a>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+          <!-- End Blog Post Siddebar -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================ End Blog Post Area =================-->
+</main>
+
+<!--================ Start Footer Area =================-->
+<footer class="footer-area section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg col-md col-sm">
+        <div class="single-footer-widget">
+          <h6>About Us</h6>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
+            magna aliqua.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
+      <p class="footer-text m-0">
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        Copyright &copy;
+        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
+          class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+      </p>
+    </div>
+  </div>
+</footer>
+<!--================ End Footer Area =================-->
